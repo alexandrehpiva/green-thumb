@@ -1,7 +1,7 @@
 {
   "name": "front-end-test-2",
   "version": "1.0.0",
-  "description": "Green Thumb Pocket",
+  "description": "Front End Test - Greenthumb",
   "main": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html --open"
