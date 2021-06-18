@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+
+  /* Scrollbar */
+  
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+    margin-right: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: hsla(0, 0%, 100%, 0.4);
+    box-shadow: 0 0 1px rgb(0 0 0 / 40%);
+  }
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: green;
+}
