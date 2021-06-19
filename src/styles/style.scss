@@ -1,5 +1,7 @@
 .main-header {
   position: relative;
+  margin: auto;
+  max-width: 1728px;
 
   padding: 2rem;
   background-color: var(--highlight);
@@ -13,7 +15,7 @@
       position: absolute;
       z-index: 2;
       top: -2rem;
-      left: calc(40% - 29rem * 2);
+      left: calc(40% - 54rem);
       height: calc(100% + 2rem);
       width: calc(100% + 12rem);
 
@@ -28,7 +30,7 @@
       position: absolute;
       z-index: 2;
       top: -2rem;
-      right: calc(-60% - 8rem * 2);
+      right: calc(-60% - 16rem);
       height: calc(100% + 2rem);
       padding-right: 100%;
 
@@ -83,22 +85,6 @@
 
   display: grid;
   place-self: center;
-
-  // @media (min-width: 900px) {
-  //   &::before {
-  //     content: '';
-
-  //     position: absolute;
-  //     top: -2rem;
-  //     left: calc(-200% - 10vw);
-  //     height: calc(100% + 4rem);
-  //     padding-left: calc(200% + 10vw + 4rem * 2);
-
-  //     background-image: url('../assets/images/hero/desktop/left-leaves.png');
-  //     background-size: contain;
-  //     background-repeat: no-repeat;
-  //   }
-  // }
 }
 
 .text {
