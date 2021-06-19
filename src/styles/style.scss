@@ -8,18 +8,26 @@
   height: 100%;
   margin: auto;
 
-  @media (max-width: 576px) {
+  @media (max-width: 575px) {
   }
 }
 
 .nav-wrapper {
   width: 100%;
 
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  // display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 899px) {
+    flex-direction: column;
+  }
 }
 
 .nav-left {
+  z-index: 2;
   padding: 3rem 0;
 
   width: 25rem;
@@ -33,23 +41,29 @@
 }
 
 .nav-right {
+  z-index: 1;
   position: relative;
 
   display: grid;
   place-self: center;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -2rem;
-    right: 0;
+  @media (min-width: 900px) {
+    &::before {
+      content: '';
 
-    height: 100%;
-    width: 100%;
+      z-index: -1;
+      position: absolute;
+      top: -2rem;
 
-    background-image: url('../assets/images/hero/desktop/left-leaves.png');
-    background-size: contain;
-    background-repeat: no-repeat;
+      top: -2rem;
+      left: -230%;
+      height: calc(100% + 4rem);
+      padding-left: calc(230% + 4rem);
+
+      background-image: url('../assets/images/hero/desktop/left-leaves.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
   }
 }
 
