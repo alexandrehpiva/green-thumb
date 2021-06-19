@@ -14,25 +14,46 @@
 
 .nav-wrapper {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
 }
 
 .nav-left {
-  padding: 2rem;
+  padding: 3rem 0;
+
+  width: 25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  // > * + * {
-  //   margin-top: 2rem;
-  // }
+  > * + * {
+    margin-top: 2rem;
+  }
 }
 
 .nav-right {
+  position: relative;
+
+  display: grid;
+  place-self: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    right: 0;
+
+    height: 100%;
+    width: 100%;
+
+    background-image: url('../assets/images/hero/desktop/left-leaves.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 }
 
-.nav-menu {
+.text {
   font-size: 4.375rem;
   font-weight: 700;
   color: var(--text-light);
