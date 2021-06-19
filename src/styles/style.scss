@@ -8,6 +8,7 @@
 
   overflow: hidden;
 
+
   @media (min-width: 900px) {
     &::before {
       content: '';
@@ -52,9 +53,6 @@
 
 .nav-wrapper {
   width: 100%;
-
-  // display: grid;
-  // grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
 
   display: flex;
   justify-content: space-between;
