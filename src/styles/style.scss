@@ -1,0 +1,44 @@
+.main-header {
+  padding: 2rem;
+  background-color: var(--highlight);
+}
+
+.container {
+  max-width: 869px;
+  height: 100%;
+  margin: auto;
+
+  @media (max-width: 576px) {
+  }
+}
+
+.nav-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-left {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  // > * + * {
+  //   margin-top: 2rem;
+  // }
+}
+
+.nav-right {
+}
+
+.nav-menu {
+  font-size: 4.375rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.nav-right-image {
+  width: 26rem;
+  object-fit: cover;
+}

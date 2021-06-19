@@ -9,10 +9,12 @@
 html,
 body {
   height: 100%;
-  width: 100%;
+
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--background-base);
 
   /* Scrollbar */
-  
+
   ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
@@ -26,7 +28,23 @@ body {
   }
 }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: green;
+li {
+  list-style-type: none;
+}
+
+:root {
+  --text-primary: #1e6b4e;
+  --text-primary-dark: #0c261c;
+  --text-secondary: #848484;
+  --text-disabled: #a8a8a8;
+  --text-light: #ffffff;
+
+  --primary: #15573f;
+  --secondary: #fd9872;
+  --highlight: #75bc97; /* TODO: Maybe change the name */
+
+  --background-base: #f6f6f6;
+  --background: #ffffff;
+
+  --border: #a8a8a8;
 }
