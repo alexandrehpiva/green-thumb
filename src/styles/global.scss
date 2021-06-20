@@ -14,7 +14,6 @@ body {
   background-color: var(--background-base);
 
   /* Scrollbar */
-
   ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
@@ -33,6 +32,7 @@ li {
 }
 
 :root {
+  /* Colors */
   --text-primary: #1e6b4e;
   --text-primary-dark: #0c261c;
   --text-secondary: #848484;
@@ -41,7 +41,7 @@ li {
 
   --primary: #15573f;
   --secondary: #fd9872;
-  --highlight: #75bc97; /* TODO: Maybe change the name */
+  --tertiary: #75bc97;
 
   --background-base: #f6f6f6;
   --background: #ffffff;
