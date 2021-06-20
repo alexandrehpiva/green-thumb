@@ -1,7 +1,8 @@
 {
-  "name": "front-end-test-2",
+  "name": "greenthumb",
   "version": "1.0.0",
-  "description": "Front End Test - Greenthumb",
+  "description": "Greenthumb",
+  "author": "Alexandre Piva",
   "main": "public/index.html",
   "scripts": {
     "prebuild": "rimraf ./build",
