@@ -1,6 +1,6 @@
 .main-header {
   position: relative;
-  max-width: 1728px;
+  max-width: 1632px;
   margin: auto;
   padding: 2rem;
   overflow: hidden;
@@ -33,7 +33,7 @@
   @media (min-width: 900px) {
     &::before {
       top: -2rem;
-      left: calc(40% - 54rem);
+      left: calc(40% - 52rem);
       height: calc(100% + 2rem);
       width: calc(100% + 12rem);
 
@@ -46,7 +46,7 @@
       position: absolute;
       z-index: 2;
       top: -2rem;
-      right: calc(-60% - 16rem);
+      right: calc(-60% - 14rem);
       height: calc(100% + 2rem);
       padding-right: 100%;
 
