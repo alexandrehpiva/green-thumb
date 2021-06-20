@@ -15,7 +15,7 @@
     content: '';
     position: absolute;
     z-index: 2;
-    top: min(calc(10rem - 50vw), 0px);
+    top: min(10rem - 50vw, -1px);
     left: 0;
 
     width: clamp(var(--min-width), 100vw, var(--max-width));
