@@ -2,16 +2,21 @@
   "name": "front-end-test-2",
   "version": "1.0.0",
   "description": "Front End Test - Greenthumb",
-  "main": "src/index.html",
+  "main": "public/index.html",
   "scripts": {
-    "start": "parcel src/index.html --open"
+    "prebuild": "rimraf ./build",
+    "build": "parcel build public/index.html --no-source-maps --out-dir build/",
+    "start": "parcel public/index.html --open"
   },
   "dependencies": {
     "parcel": "1.12.4"
   },
   "devDependencies": {
+    "@parcel/validator-typescript": "^2.0.0-alpha.3",
     "parcel-bundler": "^1.6.1",
-    "sass": "^1.35.1"
+    "rimraf": "^3.0.2",
+    "sass": "^1.35.1",
+    "typescript": "^4.3.4"
   },
   "keywords": []
 }
