@@ -1,13 +1,15 @@
-import GreenThumb from './pages/GreenThumb/index';
+import Main from './pages/Main/index';
 import store from './store';
+
+import './styles/global.scss';
 
 const App = () => {
   const root = document.createElement('div');
   root.id = 'root';
   document.body.appendChild(root);
 
-  // Append GreenThumb page
-  const greenThumb = new GreenThumb();
+  // Append Main page
+  const greenThumb = new Main();
   root.appendChild(greenThumb.node());
 
   // Fire first render

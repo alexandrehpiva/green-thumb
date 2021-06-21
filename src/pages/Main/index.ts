@@ -3,7 +3,9 @@ import Component from '../../lib/Component';
 import logoWhite from '../../assets/images/icons/logo-white.svg';
 import arrowDown from '../../assets/images/icons/arrow-down-mod.svg';
 
-class GreenThumb extends Component {
+import './style.scss';
+
+class Main extends Component {
   render() {
     this.element.innerHTML = `
       <header data-testid="main-header" class="main-header">
@@ -36,4 +38,4 @@ class GreenThumb extends Component {
   }
 }
 
-export default GreenThumb;
+export default Main;

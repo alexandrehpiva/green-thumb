@@ -25,7 +25,7 @@
       var(--max-width) * var(--img-aspect)
     );
 
-    background-image: url('../assets/images/hero/mobile/mobile-leaves.png');
+    background-image: url('../../assets/images/hero/mobile/mobile-leaves.png');
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -37,7 +37,7 @@
       height: calc(100% + 2rem);
       width: calc(100% + 12rem);
 
-      background-image: url('../assets/images/hero/desktop/left-leaves.png');
+      background-image: url('../../assets/images/hero/desktop/left-leaves.png');
     }
 
     &::after {
@@ -50,7 +50,7 @@
       height: calc(100% + 2rem);
       padding-right: 100%;
 
-      background-image: url('../assets/images/hero/desktop/right-leaves.png');
+      background-image: url('../../assets/images/hero/desktop/right-leaves.png');
       background-size: contain;
       background-repeat: no-repeat;
     }
@@ -121,7 +121,7 @@
   width: var(--width);
   height: calc(var(--width) * 0.85);
 
-  background-image: url('../assets/images/hero/mobile/mobile-plantperson.png');
+  background-image: url('../../assets/images/hero/mobile/mobile-plantperson.png');
   background-size: contain;
   background-repeat: no-repeat;
 
@@ -131,6 +131,6 @@
     width: var(--width);
     height: calc(var(--width) * 1.22);
 
-    background-image: url('../assets/images/hero/desktop/plantperson.png');
+    background-image: url('../../assets/images/hero/desktop/plantperson.png');
   }
 }
