@@ -2,17 +2,15 @@ import GreenThumb from './pages/GreenThumb/index';
 import store from './store';
 
 const App = () => {
-  console.log('running...');
-
-  const element = document.createElement('div');
-  element.id = 'root';
-  document.body.appendChild(element);
+  const root = document.createElement('div');
+  root.id = 'root';
+  document.body.appendChild(root);
 
   // Append GreenThumb page
   const greenThumb = new GreenThumb();
-  element.appendChild(greenThumb.node());
+  root.appendChild(greenThumb.node());
 
-  // First render
+  // Fire first render
   store.events.publish('change');
 };
 

@@ -9,7 +9,7 @@ interface ComponentProps {
 
 const newFragment = () => {
   const element = document.createElement('div');
-  element.id = '__fragment__';
+  element.className = 'fragment';
   return element;
 };
 
@@ -32,11 +32,11 @@ class Component {
   node() {
     const { element } = this;
 
-    if (element.id === '__fragment__') {
-      return element.firstChild ?? this.element;
+    if (element.className === 'fragment') {
+      return element.firstChild ?? element;
     }
 
-    return this.element;
+    return element;
   }
 }
 
