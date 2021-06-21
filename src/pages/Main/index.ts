@@ -9,28 +9,24 @@ class Main extends Component {
   render() {
     this.element.innerHTML = `
       <header data-testid="main-header" class="main-header">
-        <div class="container">
+        <div class="contriger">
           <div class="nav-wrapper">
             <div class="nav-left">
-              <div class="logo">
-                <img src="${logoWhite}" alt="Greenthumb" />
-              </div>
+              <picture class="logo">
+                <img src="${logoWhite}" alt="green thumb." />
+              </picture>
               <h1 class="text">Find your next green friend</h1>
-              <div>
-                <img
-                  src="${arrowDown}"
-                  alt="Greenthumb"
-                />
-              </div>
+              <picture>
+                <img src="${arrowDown}" alt="Greenthumb" />
+              </picture>
             </div>
-            <div class="nav-right"
-            { logoWhite: 'test-file-stub', arrowDown: 'test-fil>
+            <div class="nav-right">
               <picture class="nav-right-image"></picture>
             </div>
           </div>
         </div>
       </header>
-      <main class="main-content">
+      <main data-testid="main-content" class="main-content">
         <section class="filters"></section>
         <section class="content"></section>
       </main>
