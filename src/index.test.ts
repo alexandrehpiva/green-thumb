@@ -1,5 +1,5 @@
 import { getByText, screen } from '@testing-library/dom';
-import App from '../index';
+import App from './index';
 
 describe('Home', () => {
   it('should render the home page', async () => {
