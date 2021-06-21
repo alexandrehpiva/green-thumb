@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["DOM", "ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true,
     "noEmit": true,
     "strict": true,
@@ -11,8 +11,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
-    "baseUrl": "./src"
+    "sourceMap": true
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*",
+    "src/jest-config.js"
+  ]
 }
