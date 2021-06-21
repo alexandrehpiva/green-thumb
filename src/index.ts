@@ -1,7 +1,3 @@
-const App = () => {
-  const element = document.createElement('div');
-  element.innerHTML = 'Hello!';
-  document.body.appendChild(element);
-};
+import App from './App';
 
-export default App;
+App();

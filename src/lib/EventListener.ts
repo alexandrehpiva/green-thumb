@@ -15,7 +15,7 @@ class EventListener {
    * @param  {string} event Event name
    * @param  {Callback} callback Callback function to subscribe
    */
-  subscribe(event: string, callback: Callback): void {
+  subscribe<E extends string>(event: E, callback: Callback): void {
     if (!(event in this.events)) {
       this.events[event] = [];
     }

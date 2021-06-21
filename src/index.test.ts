@@ -1,16 +1,16 @@
-import { getByText, screen } from '@testing-library/dom';
-import App from './index';
+import { queryByAttribute } from '@testing-library/dom';
+import App from "./App";
 
 describe('Home', () => {
-  it('should render the home page', async () => {
+  it('should render the root div', async () => {
     App();
 
     console.log({ html: document.querySelector('html')?.innerHTML });
 
-    const greetingElement = getByText(document.body, 'Hello!');
+    const queryById = queryByAttribute.bind(null, 'id');
 
-    expect(greetingElement).toBeTruthy();
+    const rootElement = queryById(document.body, 'root');
 
-    expect(screen.queryByText('Hello!')).toBeInTheDocument();
+    expect(rootElement).toBeInTheDocument();
   });
 });
