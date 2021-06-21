@@ -1,26 +1,23 @@
 import Store from '../store/Store';
 import genId from '../utils/genId';
+import storeObj from '../store/index';
 
 interface ComponentProps {
-  store: Store;
-  element: Element;
+  store?: Store;
+  element: HTMLElement;
 }
 
 class Component {
   id: string;
-  element?: Element;
-  render?: <T extends Array<any>>(...props: T) => void;
+  element: HTMLElement;
+  render?(): void;
 
-  constructor(props: ComponentProps) {
-    if (props.store instanceof Store) {
-      props.store.events.subscribe('change', () => this.render?.());
-    }
-
-    if (props.hasOwnProperty('element')) {
-      this.element = props.element;
-    }
-
+  constructor({ store = storeObj, element }: ComponentProps) {
+    this.element = element;
     this.id = genId();
+
+    // Re-render the component when getting a change event
+    store.events.subscribe('change', () => this.render?.());
   }
 }
 
