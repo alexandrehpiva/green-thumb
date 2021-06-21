@@ -7,26 +7,29 @@ interface ComponentProps {
   element?: HTMLElement;
 }
 
-const newFragment = () => {
-  const element = document.createElement('div');
-  element.className = 'fragment';
-  return element;
-};
-
+/**
+ * Main Component
+ *
+ * TODOS:
+ * - Send props through components
+ */
 class Component {
   id: string;
   element: HTMLElement;
   render?(): void;
 
-  constructor({
-    store = storeObj,
-    element = newFragment(),
-  }: ComponentProps = {}) {
-    this.element = element;
+  constructor({ store = storeObj, element }: ComponentProps = {}) {
+    this.element = element ?? this.fragment();
     this.id = genId();
 
     // Re-render the component when getting a 'change' event
     store.events.subscribe('change', () => this.render?.());
+  }
+
+  fragment() {
+    const element = document.createElement('div');
+    element.className = 'fragment';
+    return element;
   }
 
   node() {
