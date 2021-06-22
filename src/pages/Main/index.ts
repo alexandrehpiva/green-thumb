@@ -11,11 +11,13 @@ import { sunlightFilter, waterFilter, petsFilter } from './filtersData';
 
 import svgLogoWhite from '../../assets/images/icons/logo-white.svg';
 import svgArrowDown from '../../assets/images/icons/arrow-down-mod.svg';
+import svgArrowUp from '../../assets/images/icons/arrow-up.svg';
 import pngNoResults from '../../assets/images/illustrations/no-results.png';
 import pngPick from '../../assets/images/illustrations/pick.png';
 
 import './style.scss';
 import isApiError from '../../utils/typeValidators/isApiError';
+import GridItem from '../../components/GridItem/index';
 
 class Main extends Component {
   constructor() {
@@ -26,6 +28,29 @@ class Main extends Component {
 
     // Subscribing to changes on main state
     store.events.subscribe('change', this.handleStateChange);
+  }
+
+  effect() {
+    const mainContent = document.getElementById('main-content');
+
+    function scrollTo(offsetTop: number) {
+      document.body.scrollTop = offsetTop; // For Safari
+      document.documentElement.scrollTop = offsetTop; // For Chrome, Firefox, IE and Opera
+    }
+
+    // Scroll down button
+    const scrollDownBtn = document.getElementById('scroll-down-btn');
+    scrollDownBtn?.addEventListener('click', () => {
+      if (mainContent) {
+        scrollTo(mainContent.offsetTop);
+      }
+    });
+
+    // Back to the top button
+    const backToTopBtn = document.getElementById('back-to-top');
+    backToTopBtn?.addEventListener('click', () => {
+      scrollTo(0);
+    });
   }
 
   async handleStateChange(state: CombinedStates, propName: StateName) {
@@ -48,10 +73,14 @@ class Main extends Component {
         return;
       }
 
-      const testItems = document.querySelector('#test-items');
-      if (testItems) {
-        testItems.innerHTML = JSON.stringify(data);
+      // Render all data items into grid
+      const grid = document.querySelector('#grid');
+      if (grid) {
+        grid.innerHTML = data
+          .map(plant => render(new GridItem(plant)))
+          .join('');
       }
+
       this.toggle('#loading', false);
       this.toggle('#grid-section', true);
     }
@@ -67,7 +96,7 @@ class Main extends Component {
                 <img src="${svgLogoWhite}" alt="green thumb." />
               </picture>
               <h1 class="text">Find your next green friend</h1>
-              <picture>
+              <picture role="button" id="scroll-down-btn">
                 <img src="${svgArrowDown}" alt="Greenthumb" />
               </picture>
             </div>
@@ -77,7 +106,7 @@ class Main extends Component {
           </div>
         </div>
       </header>
-      <main data-testid="main-content" class="main-content">
+      <main data-testid="main-content" class="main-content" id="main-content">
         <section
           data-testid="filters-section"
           id="filters-section"
@@ -110,17 +139,18 @@ class Main extends Component {
               </picture>
             </section>
             <section id="grid-section" class="grid-section hidden">
-              <header>
+              <header id="grid-header" class="grid-header">
                 <picture>
                   <img src="${pngPick}" alt="Our picks for you">
-                  <h2>Our picks for you</h2>
                 </picture>
+                <h2>Our picks for you</h2>
               </header>
-              <body id="grid-items" class="grid-items">
-                <pre id="test-items"></pre>
-              </body>
+              <div id="grid" class="grid"></div>
               <footer id="grid-footer" class="grid-footer">
-
+                <div role="button" id="back-to-top">
+                  <img src="${svgArrowUp}" alt="Back to the top">
+                  <span>back to the top</span>
+                </div>
               </footer>
             </section> 
           </div>

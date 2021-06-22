@@ -60,6 +60,10 @@ li {
   list-style-type: none;
 }
 
+*[role='button'] {
+  cursor: pointer;
+}
+
 #root {
   height: 100%;
 }
