@@ -6,7 +6,7 @@ import './style.scss';
 
 export type FilterOption = {
   label: string;
-  value: string;
+  value: string | boolean;
 };
 
 export interface FilterProps {
