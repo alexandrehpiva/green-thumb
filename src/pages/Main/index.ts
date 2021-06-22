@@ -6,6 +6,7 @@ import arrowDown from '../../assets/images/icons/arrow-down-mod.svg';
 import sun from '../../assets/images/illustrations/sun.png';
 import wateringCan from '../../assets/images/illustrations/wateringcan.png';
 import dog from '../../assets/images/illustrations/dog.png';
+import noResults from '../../assets/images/illustrations/no-results.png';
 
 import './style.scss';
 import render from '../../lib/utils/render';
@@ -67,7 +68,7 @@ class Main extends Component {
 
         const { water, pets, sunlight } = stateObj.main.filters ?? {};
         if (water && pets && sunlight) {
-          console.log('Ready for service call.')
+          console.log('Ready for service call.');
         }
       }
     );
@@ -111,7 +112,19 @@ class Main extends Component {
           data-testid="content-section"
           id="content-section"
           class="content-section"
-        ></section>
+        >
+          <div class="container">
+            <article class="no-results">
+              <header class="message">
+                <h2 class="title">No results yet...</h2>
+                <p class="text">Use the filters above to find the plant that best fits your environment :)</p>
+              </header>
+              <picture>
+                <img src="${noResults}" alt="No results">
+              </picture>
+            </article>
+          </div>
+        </section>
       </main>
     `;
   }
