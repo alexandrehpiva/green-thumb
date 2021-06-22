@@ -4,7 +4,7 @@ import Filter from '../../components/Filter/index';
 import logoWhite from '../../assets/images/icons/logo-white.svg';
 import arrowDown from '../../assets/images/icons/arrow-down-mod.svg';
 import sun from '../../assets/images/illustrations/sun.png';
-import wateringCan from '../../assets/images/illustrations/wateringcan.png';
+import wateringCan from '../../assets/images/illustrations/wateringcan-invert.png';
 import dog from '../../assets/images/illustrations/dog.png';
 import noResults from '../../assets/images/illustrations/no-results.png';
 
