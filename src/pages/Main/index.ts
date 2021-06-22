@@ -3,75 +3,38 @@ import Filter from '../../components/Filter/index';
 
 import logoWhite from '../../assets/images/icons/logo-white.svg';
 import arrowDown from '../../assets/images/icons/arrow-down-mod.svg';
-import sun from '../../assets/images/illustrations/sun.png';
-import wateringCan from '../../assets/images/illustrations/wateringcan-invert.png';
-import dog from '../../assets/images/illustrations/dog.png';
 import noResults from '../../assets/images/illustrations/no-results.png';
 
 import './style.scss';
 import render from '../../lib/utils/render';
 import store from '../../store';
 import { CombinedStates, StateName } from '../../store/state';
-
-const sunlightFilter = {
-  name: 'sunlight',
-  image: sun,
-  imageAlt: 'Sunlight',
-  label: `
-        <b>1. </b>Set the amount of sunlight your plant will get.
-      `,
-  options: [
-    { label: 'No sunlight', value: 'no' },
-    { label: 'Low sunlight', value: 'low' },
-    { label: 'High sunlight', value: 'high' },
-  ],
-};
-
-const waterFilter = {
-  name: 'water',
-  image: wateringCan,
-  imageAlt: 'Water',
-  label: `
-        <b>2. </b>How often do you want to <b>water</b> your plant?
-      `,
-  options: [
-    { label: 'Rarely', value: 'rarely' },
-    { label: 'Regularly', value: 'regularly' },
-    { label: 'Daily', value: 'daily' },
-  ],
-};
-
-const petsFilter = {
-  name: 'pets',
-  image: dog,
-  imageAlt: 'Pets',
-  label: `
-        <b>3. </b>Do you have pets? Do they <b>chew</b> plants?
-      `,
-  options: [
-    { label: 'No/They don’t care', value: 'no' },
-    { label: 'Yes', value: 'yes' },
-  ],
-};
+import plantsService from '../../services/plantsService';
+import { sunlightFilter, waterFilter, petsFilter } from './filtersData';
 
 class Main extends Component {
   constructor() {
     super();
 
     // Subscribing to changes on main state
-    store.events.subscribe(
-      'change',
-      (stateObj: CombinedStates, propName: StateName) => {
-        if (propName !== 'main') {
-          return;
-        }
+    store.events.subscribe('change', this.handleStateChange);
+  }
 
-        const { water, pets, sunlight } = stateObj.main.filters ?? {};
-        if (water && pets && sunlight) {
-          console.log('Ready for service call.');
-        }
+  async handleStateChange(state: CombinedStates, propName: StateName) {
+    if (propName !== 'main') {
+      return;
+    }
+
+    const { water, pets, sunlight } = state.main.filters ?? {};
+    if (water && pets && sunlight) {
+      // Ready for service call.
+      const data = await plantsService.get(sunlight, water, pets);
+      console.log({ data });
+
+      if (typeof data === 'string') {
+        return;
       }
-    );
+    }
   }
 
   render() {
