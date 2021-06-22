@@ -6,7 +6,7 @@ import './style.scss';
 
 export type FilterOption = {
   label: string;
-  value: string | boolean;
+  value: string;
 };
 
 export interface FilterProps {
@@ -55,7 +55,6 @@ class Filter extends Component {
       (input, _itemIdx) => {
         input.addEventListener('click', event => {
           const { value } = event.target as HTMLInputElement;
-          console.log({ value });
           const option = decode<FilterOption>(value);
 
           if (inputSelect && option) {

@@ -8,10 +8,7 @@ interface ComponentProps {
 }
 
 /**
- * Main Component
- *
- * TODOS:
- * - Send props through components
+ * Main Component to extend to
  */
 class Component {
   id: string;
@@ -23,14 +20,18 @@ class Component {
     this.element = element ?? this.fragment();
     this.id = genId();
 
+    // Method bindings
+    this.node = this.node.bind(this);
+    this.toggle = this.toggle.bind(this);
+
     // TODO: Render on mount?
     // render?.();
 
     // Re-render the component when getting a 'change' event
-    // TODO: Think in something better than re-render everything
+    // TODO: The problem is that re-renders everything. the re-render must be specific to changes
     // store.events.subscribe('change', () => this.render?.());
 
-    // Re-render the component when getting a 'change' event
+    // Call Component effect method when getting a 'change' event
     store.events.subscribe('rendered', () => this.effect?.());
   }
 
@@ -54,6 +55,13 @@ class Component {
     }
 
     return element;
+  }
+
+  toggle(querySelector: string, value?: boolean) {
+    const tg = () =>
+      document.querySelector(querySelector)?.classList.toggle('hidden');
+    if (!value && tg()) return;
+    tg();
   }
 }
 

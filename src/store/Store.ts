@@ -1,7 +1,7 @@
 import EventListener from '../lib/EventListener';
+import isKeyOfCombinedStates from '../utils/typeValidators/isKeyOfCombinedStates';
 import { StateName } from './state';
 import { CombinedMutations, CombinedStates } from './types';
-import { isKeyOfCombinedStates } from './utils';
 
 export interface StoreProps {
   state: CombinedStates;
@@ -23,8 +23,6 @@ class Store {
     this.state = new Proxy(state, {
       // TODO: There is a way to use pure function concept of set() (not changing stateObj directly)?
       set: (stateObj, propName, value) => {
-        console.log({ stateObj, propName, value });
-
         // Update prop value in state
         if (isKeyOfCombinedStates(propName, stateObj)) {
           stateObj[propName] = value;

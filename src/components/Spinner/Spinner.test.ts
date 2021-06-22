@@ -21,6 +21,6 @@ describe('Component Spinner end-to-end tests', () => {
   it('should have the class loader', async () => {
     const spinner = queryByText(/loading/i);
 
-    expect(spinner?.className).toBe('loader');
+    expect(spinner?.className).toMatch(/loader/);
   });
 });

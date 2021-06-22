@@ -1,4 +1,4 @@
-import { CombinedStates } from './types';
+import { CombinedStates } from '../../store/types';
 
 /**
  * Verifies if propName is keyof obj
@@ -6,9 +6,11 @@ import { CombinedStates } from './types';
  * @param obj A CombinedStates obj
  * @returns is keyof CombinedStates
  */
-export const isKeyOfCombinedStates = (
+const isKeyOfCombinedStates = (
   propName: string | symbol,
   obj: CombinedStates
 ): propName is keyof CombinedStates => {
   return propName in obj;
 };
+
+export default isKeyOfCombinedStates;

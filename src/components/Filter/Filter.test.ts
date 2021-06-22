@@ -1,11 +1,9 @@
-import { screen, queryByAltText, within } from '@testing-library/dom';
+import { screen } from '@testing-library/dom';
 import Filter from '.';
 import render from '../../lib/utils/render';
 import { cleanup } from '../../utils/testUtils';
 
 describe('Component Filter end-to-end tests', () => {
-  const { findByTestId } = screen;
-
   beforeEach(() => {
     cleanup();
   });

@@ -1,5 +1,5 @@
 export interface MainState {
-  filters?: Record<string, any>; // TODO: Refazer tipo
+  filters?: Record<string, any>; // TODO: Improve this type
 }
 
 const mainState: MainState = {

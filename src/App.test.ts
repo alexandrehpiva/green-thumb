@@ -5,8 +5,6 @@ describe('App', () => {
   it('should render the root div', async () => {
     App();
 
-    // console.log({ html: document.querySelector('html')?.innerHTML });
-
     const rootElement = queryById(document.body, 'root');
 
     expect(rootElement).toBeInTheDocument();

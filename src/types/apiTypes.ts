@@ -1,3 +1,8 @@
+export type ApiError = {
+  status: number;
+  error: string;
+};
+
 export type Plant = {
   id: number;
   name: string;

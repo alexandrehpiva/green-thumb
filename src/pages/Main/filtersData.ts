@@ -39,7 +39,7 @@ export const petsFilter: FilterProps = {
         <b>3. </b>Do you have pets? Do they <b>chew</b> plants?
       `,
   options: [
-    { label: 'No/They don’t care', value: false },
-    { label: 'Yes', value: true },
+    { label: 'No/They don’t care', value: 'false' },
+    { label: 'Yes', value: 'true' },
   ],
 };
