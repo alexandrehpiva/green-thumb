@@ -1,6 +1,6 @@
 .main-header {
   position: relative;
-  max-width: 1632px;
+  max-width: var(--screen-max-width);
   margin: auto;
   padding: 2rem 0;
   overflow: hidden;
@@ -144,6 +144,8 @@
 }
 
 .filters-section {
+  max-width: var(--screen-max-width);
+  margin: auto;
   background-color: var(--background);
 
   > .container {
@@ -165,6 +167,9 @@
 }
 
 .content-section {
+  max-width: var(--screen-max-width);
+  margin: auto;
+  
   > .container {
     padding: 0 3rem;
   }
