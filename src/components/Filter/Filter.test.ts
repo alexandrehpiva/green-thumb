@@ -1,4 +1,3 @@
-import { screen } from '@testing-library/dom';
 import Filter from '.';
 import render from '../../lib/utils/render';
 import { cleanup } from '../../utils/testUtils';
