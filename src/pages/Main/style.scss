@@ -2,10 +2,14 @@
   position: relative;
   max-width: 1632px;
   margin: auto;
-  padding: 2rem;
+  padding: 2rem 0;
   overflow: hidden;
 
   background: var(--tertiary);
+
+  > .container {
+    padding: 0 2rem;
+  }
 
   &::before {
     --min-width: 20rem;
@@ -132,5 +136,30 @@
     height: calc(var(--width) * 1.22);
 
     background-image: url('../../assets/images/hero/desktop/plantperson.png');
+  }
+}
+
+.main-content {
+  background-color: var(--background-base);
+}
+
+.filters-section {
+  background-color: var(--background);
+
+  > .container {
+    padding: 0 3rem;
+  }
+}
+
+.filters-wrapper {
+  padding: 1.5rem 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  justify-content: center;
+  grid-gap: 3rem;
+
+  @media (min-width: 900px) {
+    padding: 3.3rem 0;
   }
 }

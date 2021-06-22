@@ -1,4 +1,5 @@
 import EventListener from '../lib/EventListener';
+import { StateName } from './state';
 import { CombinedMutations, CombinedStates } from './types';
 import { isKeyOfCombinedStates } from './utils';
 
@@ -22,13 +23,15 @@ class Store {
     this.state = new Proxy(state, {
       // TODO: There is a way to use pure function concept of set() (not changing stateObj directly)?
       set: (stateObj, propName, value) => {
+        console.log({ stateObj, propName, value });
+
         // Update prop value in state
         if (isKeyOfCombinedStates(propName, stateObj)) {
           stateObj[propName] = value;
         }
 
         // Publish a change event
-        this.events.publish('change', stateObj);
+        this.events.publish('change', stateObj, propName, value);
 
         this.status = 'idle';
 
@@ -39,7 +42,7 @@ class Store {
 
   // TODO: create/test a dispatchAsync
 
-  dispatch<T = any>(stateName: string, mutationName: string, payload: T) {
+  dispatch<T = any>(stateName: StateName, mutationName: string, payload: T) {
     if (typeof this.mutations[stateName]?.[mutationName] !== 'function') {
       throw new Error(
         `The mutation key [${stateName}][${mutationName}] do not exists.`

@@ -12,30 +12,91 @@ body {
 
   font-family: 'Montserrat', sans-serif;
   background-color: var(--background-base);
+  color: var(--text-primary);
 
   /* Scrollbar */
+  scroll-behavior: smooth;
+  
   ::-webkit-scrollbar {
     -webkit-appearance: none;
-    width: 7px;
-    margin-right: 4px;
+    width: 0.5rem;
+    height: 0.5rem;
   }
 
   ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: hsla(0, 0%, 100%, 0.4);
+    background: #dee2e5;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: 0.2s;
+
     box-shadow: 0 0 1px rgb(0 0 0 / 40%);
   }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background: var(--border);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+input,
+select,
+textarea {
+  color: var(--text-primary);
+}
+
+*:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 li {
   list-style-type: none;
 }
 
+#root {
+  height: 100%;
+}
+
+.fragment {
+  height: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.rotate-right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.rotate-left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.rotate-up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.rotate-down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
 :root {
   /* Colors */
-  --text-primary: #1e6b4e;
-  --text-primary-dark: #0c261c;
-  --text-secondary: #848484;
+  --text-primary: #848484;
+  --text-secondary: #1e6b4e;
+  --text-secondary-dark: #0c261c;
   --text-disabled: #a8a8a8;
   --text-light: #ffffff;
 

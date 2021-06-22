@@ -17,13 +17,21 @@ class Component {
   id: string;
   element: HTMLElement;
   render?(): void;
+  effect?(): void;
 
   constructor({ store = storeObj, element }: ComponentProps = {}) {
     this.element = element ?? this.fragment();
     this.id = genId();
 
+    // TODO: Render on mount?
+    // render?.();
+
     // Re-render the component when getting a 'change' event
-    store.events.subscribe('change', () => this.render?.());
+    // TODO: Think in something better than re-render everything
+    // store.events.subscribe('change', () => this.render?.());
+
+    // Re-render the component when getting a 'change' event
+    store.events.subscribe('rendered', () => this.effect?.());
   }
 
   fragment() {
@@ -32,11 +40,17 @@ class Component {
     return element;
   }
 
-  node() {
+  node(): Element {
     const { element } = this;
 
     if (element.className === 'fragment') {
-      return element.firstChild ?? element;
+      // Return the elements inside a div fragment if it has adjacent siblings
+      if (element.children.length > 1) {
+        return element;
+      }
+
+      // Return the rendered element or the div fragment
+      return element.firstElementChild ?? element;
     }
 
     return element;
