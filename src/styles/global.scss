@@ -11,7 +11,7 @@ body {
   height: 100%;
 
   font-family: 'Montserrat', sans-serif;
-  background-color: var(--background-base);
+  background-color: var(--bg-base);
   color: var(--text-primary);
 
   /* Scrollbar */
@@ -106,10 +106,10 @@ li {
 
   --primary: #15573f;
   --secondary: #fd9872;
-  --tertiary: #75bc97;
-
-  --background-base: #f2f2f2;
-  --background: #ffffff;
+  
+  --bg-base: #f2f2f2;
+  --bg-normal: #ffffff;
+  --bg-highlighted: #75bc97;
 
   --border: #a8a8a8;
 

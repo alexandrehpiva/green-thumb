@@ -49,6 +49,7 @@ class GridItem extends Component {
   render() {
     this.element.innerHTML = `
       <div class="grid-item${this.staff_favorite ? ' staff-favorite' : ''}">
+        <div class="badge-favorite">✨ Staff favorite</div>
         <picture>
           <img src="${this.url}" alt="${this.name}">
         </picture>

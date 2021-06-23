@@ -1,4 +1,5 @@
 .grid-item {
+  position: relative;
   padding: 1.1rem;
   overflow: hidden;
 
@@ -6,50 +7,80 @@
   flex-direction: column;
   gap: 0.4rem;
 
-  background-color: var(--background);
+  background-color: var(--bg-normal);
   border-radius: 0.3rem;
 
   > picture {
-    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    overflow: hidden;
 
     > img {
-      // height: 12rem;
       max-width: 100%;
+      max-height: 100%;
       object-fit: scale-down;
     }
   }
 
+  .badge-favorite {
+    display: none;
+  }
+
   &.staff-favorite {
-    grid-column: 1 / span 2;
-    grid-row: 1 / span 2;
-    
-    padding: 1.6rem;
+    padding: 1.8rem;
 
-    .grid-item-footer {
-      grid-template-areas:
-        'title price'
-        'title tags';
+    .badge-favorite {
+      position: absolute;
+      margin-left: -2rem;
+      width: 50%;
+      height: 2.2rem;
 
-      .title {
-        font-size: 2.2rem;
+      font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+      font-weight: 700;
+      color: var(--text-light);
+      white-space: nowrap;
+      overflow: hidden;
 
-        white-space: initial;
-        text-overflow: initial;
-        overflow: initial;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 0 5rem 5rem 0;
+      background-color: var(--bg-highlighted);
+
+      @media (min-width: 576) {
+        height: 2.6rem;
       }
+    }
 
-      .price {
-        font-size: 1.5rem;
+    @media (min-width: 576px) {
+      grid-column: span 2;
+      grid-row: span 2;
 
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-end;
-      }
+      .grid-item-footer {
+        grid-template-areas:
+          'title price'
+          'title tags';
 
-      .tag {
-        > img {
-          height: 1.55rem;
-          max-width: 1.9rem;
+        .title {
+          font-size: 2.2rem;
+        }
+
+        .price {
+          font-size: 1.5rem;
+
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-end;
+        }
+
+        .tag {
+          > img {
+            height: 1.55rem;
+            max-width: 1.9rem;
+          }
         }
       }
     }
@@ -68,16 +99,12 @@
   .title {
     grid-area: title;
 
-    // min-width: 12rem;
     max-width: 100%;
 
+    vertical-align: text-bottom;
     color: var(--text-secondary);
     font-weight: 700;
     font-size: 0.9rem;
-    // line-height: 1.4rem;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
 
   .price {
