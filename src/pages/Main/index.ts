@@ -11,7 +11,7 @@ import { sunlightFilter, waterFilter, petsFilter } from './filtersData';
 
 import svgLogoWhite from '../../assets/images/icons/logo-white.svg';
 import svgArrowDown from '../../assets/images/icons/arrow-down-mod.svg';
-import svgArrowUp from '../../assets/images/icons/arrow-up.svg';
+import svgArrowUp from '../../assets/images/icons/arrow-up-mod.svg';
 import pngNoResults from '../../assets/images/illustrations/no-results.png';
 import pngPick from '../../assets/images/illustrations/pick.png';
 

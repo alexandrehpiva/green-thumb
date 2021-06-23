@@ -7,6 +7,8 @@
 .filter-image {
   > img {
     height: 5rem;
+    max-width: 100%;
+
     object-fit: scale-down;
   }
 }
@@ -33,7 +35,13 @@
       border: none;
       background-color: var(--background);
 
+      color: var(--text-primary);
+
       &:disabled {
+        color: var(--text-primary);
+      }
+
+      &::placeholder {
         color: var(--text-disabled);
       }
     }

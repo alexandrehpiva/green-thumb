@@ -48,14 +48,14 @@ class GridItem extends Component {
 
   render() {
     this.element.innerHTML = `
-      <div class="grid-item staff-favorite">
+      <div class="grid-item${this.staff_favorite ? ' staff-favorite' : ''}">
         <picture>
           <img src="${this.url}" alt="${this.name}">
         </picture>
-        <div class="title">${this.name}</div>
         <div class="grid-item-footer">
+          <div class="title">${this.name}</div>
           <span class="price">$${this.price}</span>
-          <div class="icon-tags">
+          <div class="tags">
             <picture class="tag"><img src="${
               imageMap[this.toxicity.toString() as keyof typeof imageMap]
             }" alt="" /></picture>
