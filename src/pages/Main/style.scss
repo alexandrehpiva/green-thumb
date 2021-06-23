@@ -172,7 +172,7 @@
   > .container {
     padding: 0 3rem;
 
-    @media (min-width: 576px) {
+    @media (min-width: 768px) {
       max-width: calc(var(--size) + 4rem);
     }
   }
@@ -271,7 +271,7 @@
     width: 0.5rem;
   }
 
-  @media (min-width: 576px) {
+  @media (min-width: 768px) {
     width: 100%;
     margin: 0;
     margin-top: 1.3rem;
@@ -316,7 +316,7 @@
     object-fit: scale-down;
   }
 
-  @media (min-width: 576px) {
+  @media (min-width: 768px) {
     margin-left: 0rem;
     margin-right: 0rem;
   }
