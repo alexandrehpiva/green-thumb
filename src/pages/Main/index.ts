@@ -49,7 +49,9 @@ class Main extends Component {
     // Back to the top button
     const backToTopBtn = document.getElementById('back-to-top');
     backToTopBtn?.addEventListener('click', () => {
-      scrollTo(0);
+      if (mainContent) {
+        scrollTo(mainContent.offsetTop);
+      }
     });
   }
 
