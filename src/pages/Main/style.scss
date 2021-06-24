@@ -321,3 +321,11 @@
     margin-right: 0rem;
   }
 }
+
+#loading {
+  > .loader {
+    position: fixed;
+    bottom: -2rem;
+    right: 2rem;
+  }
+}

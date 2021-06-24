@@ -130,7 +130,7 @@ class Main extends Component {
           class="content-section"
         >
           <div class="container">
-            <section id="loading" class="no-results hidden">
+            <section id="loading" class="hidden">
               ${render(new Spinner())}
             </section>
             <section id="no-results" class="no-results">
