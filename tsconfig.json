@@ -11,8 +11,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
-    "baseUrl": "./src"
+    "sourceMap": true
   },
   "include": [
     "src/**/*",
