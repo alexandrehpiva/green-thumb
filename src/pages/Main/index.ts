@@ -6,6 +6,9 @@ import render from '../../lib/utils/render';
 import store from '../../store';
 import { CombinedStates, StateName } from '../../store/state';
 import plantsService from '../../services/plantsService';
+import isApiError from '../../utils/typeValidators/isApiError';
+import GridItem from '../../components/GridItem/index';
+import toggle from '../../lib/utils/toggle';
 
 import { sunlightFilter, waterFilter, petsFilter } from './filtersData';
 
@@ -16,8 +19,6 @@ import pngNoResults from '../../assets/images/illustrations/no-results.png';
 import pngPick from '../../assets/images/illustrations/pick.png';
 
 import './style.scss';
-import isApiError from '../../utils/typeValidators/isApiError';
-import GridItem from '../../components/GridItem/index';
 
 class Main extends Component {
   constructor() {
@@ -63,15 +64,15 @@ class Main extends Component {
     const { water, pets, sunlight } = state.main.filters ?? {};
     if (water && pets && sunlight) {
       // Ready for service call.
-      this.toggle('#loading', true);
-      this.toggle('#no-results', false);
-      this.toggle('#grid-section', false);
+      toggle('#loading', true);
 
       const data = await plantsService.get(sunlight, water, pets);
 
       if (isApiError(data)) {
-        this.toggle('#loading', false);
-        this.toggle('#no-results', true);
+        toggle('#loading', false);
+        toggle('#no-results', true);
+        toggle('#grid-section', false);
+
         return;
       }
 
@@ -83,8 +84,9 @@ class Main extends Component {
           .join('');
       }
 
-      this.toggle('#loading', false);
-      this.toggle('#grid-section', true);
+      toggle('#loading', false);
+      toggle('#no-results', false);
+      toggle('#grid-section', true);
     }
   }
 
