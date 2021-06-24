@@ -54,6 +54,13 @@ class Main extends Component {
         scrollTo(mainContent.offsetTop);
       }
     });
+
+    document.addEventListener('scroll', function (e) {
+      if (mainContent && window.scrollY > mainContent.offsetTop) {
+        return toggle('#back-to-top', true);
+      }
+      return toggle('#back-to-top', false);
+    });
   }
 
   async handleStateChange(state: CombinedStates, propName: StateName) {
@@ -151,7 +158,7 @@ class Main extends Component {
               </header>
               <div id="grid" class="grid"></div>
               <footer id="grid-footer" class="grid-footer">
-                <div role="button" id="back-to-top">
+                <div role="button" id="back-to-top" class="hidden">
                   <img src="${svgArrowUp}" alt="Back to the top">
                   <span>back to the top</span>
                 </div>

@@ -73,7 +73,7 @@ li {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .rotate-right {
@@ -96,6 +96,28 @@ li {
   -webkit-transform: rotate(45deg);
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 :root {
   /* Colors */
   --text-primary: #848484;
@@ -106,7 +128,7 @@ li {
 
   --primary: #15573f;
   --secondary: #fd9872;
-  
+
   --bg-base: #f2f2f2;
   --bg-normal: #ffffff;
   --bg-highlighted: #75bc97;

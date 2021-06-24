@@ -311,6 +311,8 @@
   border: 1px solid var(--primary);
   border-radius: 5rem;
 
+  animation: fadeIn 300ms ease-in-out forwards;
+
   > img {
     height: 1.1rem;
     object-fit: scale-down;
