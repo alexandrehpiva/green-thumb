@@ -22,7 +22,6 @@ class Component {
 
     // Method bindings
     this.node = this.node.bind(this);
-    this.toggle = this.toggle.bind(this);
 
     // TODO: Render on mount?
     // render?.();
@@ -50,18 +49,11 @@ class Component {
         return element;
       }
 
-      // Return the rendered element or the div fragment
+      // Return the rendered element in the div fragment
       return element.firstElementChild ?? element;
     }
 
     return element;
-  }
-
-  toggle(querySelector: string, value?: boolean) {
-    const tg = () =>
-      document.querySelector(querySelector)?.classList.toggle('hidden');
-    if (!value && tg()) return;
-    tg();
   }
 }
 
