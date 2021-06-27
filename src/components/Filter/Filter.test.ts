@@ -1,8 +1,8 @@
-import { screen, waitFor } from '@testing-library/dom';
+import { waitFor } from '@testing-library/dom';
+import { cleanup, findByTestIds } from '../../utils/testUtils';
 
 import Filter from '.';
 import render from '../../lib/utils/render';
-import { cleanup } from '../../utils/testUtils';
 import { FilterProps } from './index';
 
 describe('EndToEnd(Filter)', () => {
@@ -32,13 +32,11 @@ describe('EndToEnd(Filter)', () => {
   });
 
   it('should open the list on click', async () => {
-    const selectContainer = await screen.findByTestId(
-      `select-wrapper-${filter.id}`
-    );
-    const selectList = await screen.findByTestId(`select-list-${filter.id}`);
-    const btnOpenList = (await screen.findByTestId(
+    const [selectContainer, selectList, btnOpenList] = await findByTestIds(
+      `select-wrapper-${filter.id}`,
+      `select-list-${filter.id}`,
       `select-btn-${filter.id}`
-    )) as HTMLInputElement;
+    );
 
     expect(selectList).toHaveClass('hidden');
 
