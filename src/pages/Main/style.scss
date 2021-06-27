@@ -327,6 +327,7 @@
 #loading {
   > .loader {
     position: fixed;
+    z-index: 99;
     bottom: -2rem;
     right: 2rem;
   }
