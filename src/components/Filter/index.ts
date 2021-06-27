@@ -100,14 +100,18 @@ class Filter extends Component {
   }
 
   render() {
-    this.element.innerHTML = `    
+    this.element.innerHTML = `
       <div class="filter-wrapper">
         <picture class="filter-image">
           <img src="${this.image}" alt="${this.imageAlt}" />
         </picture>
         <label for="input-${this.id}" class="filter-label">${this.label}</label>
 
-        <div class="select-wrapper" id="select-wrapper-${this.id}">
+        <div
+          data-testid="select-wrapper-${this.id}"
+          class="select-wrapper"
+          id="select-wrapper-${this.id}"
+        >
           <div class="select">
             <input
               type="text"
@@ -120,7 +124,11 @@ class Filter extends Component {
 
             <div class="select-icon">
               <label for="select-btn-${this.id}">
-                <input type="checkbox" id="select-btn-${this.id}" />
+                <input
+                  data-testid="select-btn-${this.id}"
+                  type="checkbox"
+                  id="select-btn-${this.id}"
+                />
                 <div class="square">
                   <div class="arrow rotate-down"></div>
                 </div>
@@ -128,7 +136,11 @@ class Filter extends Component {
             </div>
           </div>
 
-          <div class="select-list hidden" id="select-list-${this.id}">
+          <div
+            data-testid="select-list-${this.id}"
+            class="select-list hidden"
+            id="select-list-${this.id}"
+          >
             ${this.options
               .map(
                 option => `
