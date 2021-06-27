@@ -87,7 +87,6 @@ class Filter extends Component {
 
       if (selectContainer?.contains(targetElement)) {
         // Clicked inside the element
-        console.log('Clicked inside!');
         return;
       }
 
