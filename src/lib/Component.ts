@@ -40,7 +40,7 @@ class Component {
     return element;
   }
 
-  node(): Element {
+  node(): HTMLElement {
     const { element } = this;
 
     if (element.className === 'fragment') {
@@ -50,7 +50,7 @@ class Component {
       }
 
       // Return the rendered element in the div fragment
-      return element.firstElementChild ?? element;
+      return (element.firstElementChild as HTMLElement) ?? element;
     }
 
     return element;
