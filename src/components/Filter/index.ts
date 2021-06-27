@@ -37,20 +37,25 @@ class Filter extends Component {
   effect() {
     const query = document.querySelector.bind(document);
     const queryAll = document.querySelectorAll.bind(document);
+    const getById = document.getElementById.bind(document);
 
-    const toggleFilterList = () => {
-      query(`#select-wrapper-${this.id}`)?.classList.toggle('opened');
-      query(`#select-list-${this.id}`)?.classList.toggle('hidden');
-    };
-
+    // Elements
+    const selectContainer = getById(`select-wrapper-${this.id}`);
+    const selectList = getById(`select-list-${this.id}`); // Flyout list
+    const inputSelect: HTMLInputElement | null = query(`#input-${this.id}`);
     const btnOpenList: HTMLInputElement | null = query(
       `#select-btn-${this.id}`
     );
 
+    const toggleFilterList = () => {
+      selectContainer?.classList.toggle('opened');
+      selectList?.classList.toggle('hidden');
+    };
+
+    // Open list button
     btnOpenList?.addEventListener('change', toggleFilterList);
 
-    const inputSelect: HTMLInputElement | null = query(`#input-${this.id}`);
-
+    // List click functions
     queryAll(`.select-item > input[id="radio-${this.id}"]`).forEach(
       (input, _itemIdx) => {
         input.addEventListener('click', event => {
@@ -70,6 +75,28 @@ class Filter extends Component {
         });
       }
     );
+
+    // Close FilterList if clicked outside the element
+    document.addEventListener('click', evt => {
+      // Ignore if the list is not opened
+      if (!selectContainer?.classList.contains('opened')) {
+        return;
+      }
+
+      let targetElement = evt.target as HTMLElement; // clicked element
+
+      if (selectContainer?.contains(targetElement)) {
+        // Clicked inside the element
+        console.log('Clicked inside!');
+        return;
+      }
+
+      // Clicked outside the element
+      toggleFilterList();
+      if (btnOpenList) {
+        btnOpenList.checked = false;
+      }
+    });
   }
 
   render() {
