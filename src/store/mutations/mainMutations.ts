@@ -13,6 +13,17 @@ const mainMutations = {
       },
     };
   },
+  // removeFilter(state: MainState, payload: { name: string }): MainState {
+  //   return {
+  //     ...state,
+  //     filters: Object.keys(state.filters ?? {})
+  //       .filter(name => name === payload.name)
+  //       .reduce((obj: Record<string, any>, key) => {
+  //         obj[key] = state.filters?.[key];
+  //         return obj;
+  //       }, {}),
+  //   };
+  // },
 };
 
 export default mainMutations;
