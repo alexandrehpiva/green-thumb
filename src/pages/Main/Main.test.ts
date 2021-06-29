@@ -3,14 +3,17 @@ import Main from '.';
 import render from '../../lib/utils/render';
 import { cleanup } from '../../utils/testUtils';
 
-describe('Component Main end-to-end tests', () => {
+describe('EndToEnd(Main)', () => {
   const { findByTestId } = screen;
+  let main: Main;
 
   beforeEach(() => {
     cleanup();
+    main = new Main();
 
     // Render into body
-    render(new Main(), document.body);
+    render(main, document.body);
+    main.effect();
   });
 
   it('should render the main header with Greenthumb logo inside', async () => {
@@ -43,4 +46,28 @@ describe('Component Main end-to-end tests', () => {
 
     expect(contentSection).toBeInTheDocument();
   });
+
+  it('should scroll down to main-content on click scroll-down-btn', () => {
+    // TODO
+  })
+
+  it('should up to main-content on click back-to-top btn ', () => {
+    // TODO
+  })
+
+  it('should enable back-to-top btn when the scroll is below the main-content container', () => {
+    // TODO
+  })
+
+  it('should call fetch service data when all three filters are filled', () => {
+    // TODO
+  })
+
+  it('should show no-results container if receive an api error', () => {
+    // TODO
+  })
+
+  it('should render all received data items into grid if not get api error', () => {
+    // TODO
+  })
 });

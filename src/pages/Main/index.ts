@@ -9,6 +9,7 @@ import plantsService from '../../services/plantsService';
 import isApiError from '../../utils/typeValidators/isApiError';
 import GridItem from '../../components/GridItem/index';
 import toggle from '../../lib/utils/toggle';
+import { scrollTo } from '../../utils/dom/scrollTo';
 
 import { sunlightFilter, waterFilter, petsFilter } from './filtersData';
 
@@ -34,26 +35,19 @@ class Main extends Component {
   effect() {
     const mainContent = document.getElementById('main-content');
 
-    function scrollTo(offsetTop: number) {
-      document.body.scrollTop = offsetTop; // For Safari
-      document.documentElement.scrollTop = offsetTop; // For Chrome, Firefox, IE and Opera
-    }
-
     // Scroll down button
     const scrollDownBtn = document.getElementById('scroll-down-btn');
-    scrollDownBtn?.addEventListener('click', () => {
-      if (mainContent) {
-        scrollTo(mainContent.offsetTop);
-      }
-    });
+    scrollDownBtn?.addEventListener(
+      'click',
+      () => mainContent && scrollTo(mainContent.offsetTop)
+    );
 
     // Back to the top button
     const backToTopBtn = document.getElementById('back-to-top');
-    backToTopBtn?.addEventListener('click', () => {
-      if (mainContent) {
-        scrollTo(mainContent.offsetTop);
-      }
-    });
+    backToTopBtn?.addEventListener(
+      'click',
+      () => mainContent && scrollTo(mainContent.offsetTop)
+    );
 
     document.addEventListener('scroll', function (e) {
       if (mainContent && window.scrollY > mainContent.offsetTop) {
