@@ -11,8 +11,10 @@ const toggle = (
   const element =
     typeof selector === 'string' ? document.querySelector(selector) : selector;
 
-  const tg = () => !element?.classList.toggle('hidden');
-  const isHidden = () => element?.classList.contains('hidden');
+  if (!element) return;
+
+  const tg = () => !element.classList.toggle('hidden');
+  const isHidden = () => element.classList.contains('hidden');
 
   switch (visible) {
     case undefined:

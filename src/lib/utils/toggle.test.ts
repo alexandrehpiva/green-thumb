@@ -2,48 +2,40 @@ import toggle from './toggle';
 
 describe('Unit(toggle)', () => {
   it('should toggle hidden class in the element if it does not specify the value', () => {
-    const hiddenElementHTML = `
-      <div class="hidden"></div>
-    `;
-
     const element = document.createElement('div');
     toggle(element);
 
-    expect(element.outerHTML).toBe(hiddenElementHTML.trim());
+    expect(element).toHaveClass('hidden');
   });
 
   it('should add the hidden class in the element if value is false', () => {
-    const hidden = /<div(?: class="hidden")?><\/div>/;
-
     // Not hidden element
     const element = document.createElement('div');
     toggle(element, false);
 
-    expect(element.outerHTML).toMatch(hidden);
+    expect(element).toHaveClass('hidden');
 
     // Already hidden element
     const hiddenElement = document.createElement('div');
     element.classList.add('hidden');
     toggle(hiddenElement, false);
 
-    expect(element.outerHTML).toMatch(hidden);
+    expect(element).toHaveClass('hidden');
   });
 
   it('should remove the hidden class from the element if the value is true', () => {
-    const notHidden = /<div(?: class="")?><\/div>/;
-
     // Hidden element
     const element = document.createElement('div');
     element.classList.add('hidden');
     toggle(element, true);
 
-    expect(element.outerHTML).toMatch(notHidden);
+    expect(element).not.toHaveClass('hidden');
 
     // Already not hidden element
     const hiddenElement = document.createElement('div');
     toggle(hiddenElement, true);
 
-    expect(element.outerHTML).toMatch(notHidden);
+    expect(element).not.toHaveClass('hidden');
   });
 
   it("should return false if the final element has hidden class and true if don't", () => {
@@ -72,5 +64,21 @@ describe('Unit(toggle)', () => {
     const aElementResult = toggle(aElement, true);
 
     expect(aElementResult).toBe(undefined);
+  });
+
+  it('should find the element in document and toggle hidden class if using a string selector', () => {
+    const element = document.createElement('div');
+    element.id = 'element';
+    document.body.appendChild(element);
+
+    toggle('#element');
+
+    expect(element).toHaveClass('hidden');
+  });
+
+  it('should return undefined if do not found an element', () => {
+    let response = toggle('#invalid-element', true);
+
+    expect(response).not.toBeDefined();
   });
 });
