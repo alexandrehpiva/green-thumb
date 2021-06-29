@@ -6,7 +6,7 @@ import { ApiError } from '../../types/apiTypes';
  * @returns is ApiError type validation
  */
 const isApiError = (data: any): data is ApiError => {
-  return 'error' in data && 'status' in data;
+  return typeof data === 'object' && 'error' in data && 'status' in data;
 };
 
 export default isApiError;
