@@ -48,5 +48,11 @@ describe('EndToEnd(Filter)', () => {
     });
   });
 
-  it('should...', async () => {});
+  it('should addFilter to store on click a list item', async () => {
+    // TODO
+  });
+
+  it('should close the list on click outside', async () => {
+    // TODO
+  });
 });
