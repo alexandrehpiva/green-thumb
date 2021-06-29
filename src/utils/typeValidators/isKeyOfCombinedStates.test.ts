@@ -1,4 +1,4 @@
-import { CombinedStates } from '../../store/state';
+import { CombinedStates } from '../../store/types';
 import isKeyOfCombinedStates from './isKeyOfCombinedStates';
 
 describe('Unit(isKeyOfCombinedStates)', () => {

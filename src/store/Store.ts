@@ -1,20 +1,16 @@
 import EventListener from '../lib/EventListener';
-import isKeyOfCombinedStates from '../utils/typeValidators/isKeyOfCombinedStates';
-import { StateName } from './state';
 import { CombinedMutations, CombinedStates } from './types';
 
-export interface StoreProps {
-  state: CombinedStates;
-  mutations: CombinedMutations;
-}
-
-class Store {
-  private mutations: CombinedMutations;
-  private state: CombinedStates;
+class Store<
+  S extends CombinedStates = CombinedStates,
+  M extends CombinedMutations<keyof S> = CombinedMutations<keyof S>
+> {
+  private mutations: M;
+  private state: S;
   events: EventListener;
   status: string;
 
-  constructor({ state = {}, mutations = {} }: StoreProps) {
+  constructor({ state, mutations }: { state: S; mutations: M }) {
     this.mutations = mutations;
     this.events = new EventListener(); // Subscriptions
     this.status = 'idle';
@@ -24,8 +20,8 @@ class Store {
       // TODO: There is a way to use pure function concept of set() (not changing stateObj directly)?
       set: (stateObj, propName, value) => {
         // Update prop value in state
-        if (isKeyOfCombinedStates(propName, stateObj)) {
-          stateObj[propName] = value;
+        if (typeof stateObj !== undefined && propName in stateObj) {
+          stateObj[propName as keyof typeof stateObj] = value;
         }
 
         // Publish a change event
@@ -40,7 +36,11 @@ class Store {
 
   // TODO: create/test a dispatchAsync
 
-  dispatch<T = any>(stateName: StateName, mutationName: string, payload: T) {
+  dispatch<T = any>(
+    stateName: keyof S,
+    mutationName: keyof M[keyof S],
+    payload: T
+  ) {
     if (typeof this.mutations[stateName]?.[mutationName] !== 'function') {
       throw new Error(
         `The mutation key [${stateName}][${mutationName}] do not exists.`

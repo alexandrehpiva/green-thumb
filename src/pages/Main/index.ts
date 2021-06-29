@@ -4,7 +4,7 @@ import Spinner from '../../components/Spinner';
 
 import render from '../../lib/utils/render';
 import store from '../../store';
-import { CombinedStates, StateName } from '../../store/state';
+import { StateName } from '../../store/state';
 import plantsService from '../../services/plantsService';
 import isApiError from '../../utils/typeValidators/isApiError';
 import GridItem from '../../components/GridItem/index';
@@ -20,6 +20,7 @@ import pngNoResults from '../../assets/images/illustrations/no-results.png';
 import pngPick from '../../assets/images/illustrations/pick.png';
 
 import './style.scss';
+import { CombinedStates } from '../../store/types';
 
 class Main extends Component {
   constructor() {
