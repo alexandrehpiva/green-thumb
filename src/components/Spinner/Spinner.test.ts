@@ -1,26 +1,29 @@
-import { screen } from '@testing-library/dom';
 import Spinner from '.';
-import render from '../../lib/utils/render';
 import { cleanup } from '../../utils/testUtils';
 
 describe('Component Spinner end-to-end tests', () => {
-  const { queryByText } = screen;
+  let spinner: Spinner;
 
   beforeEach(() => {
     cleanup();
 
-    render(new Spinner(), document.body);
+    spinner = new Spinner();
+    spinner.render();
   });
 
-  it('should render the Spinner component correctly', async () => {
-    const spinner = queryByText(/loading/i);
+  it('should have the class loader and Loading... message', async () => {
+    expect(spinner.node()).toHaveClass('loader');
 
-    expect(spinner).toBeInTheDocument();
+    expect(spinner.node()).toHaveTextContent('Loading...');
   });
-  
-  it('should have the class loader', async () => {
-    const spinner = queryByText(/loading/i);
 
-    expect(spinner?.className).toMatch(/loader/);
+  it('should insert the className specified in constructor', () => {
+    const className = 'test-class';
+
+    cleanup();
+    spinner = new Spinner({ className });
+    spinner.render();
+
+    expect(spinner.node()).toHaveClass(className);
   });
 });
