@@ -56,7 +56,7 @@ class Filter extends Component {
     btnOpenList?.addEventListener('change', toggleFilterList);
 
     // List click functions
-    queryAll(`.select-item > input[id="radio-${this.id}"]`).forEach(
+    queryAll(`.select-item > input[name="radio-${this.id}"]`).forEach(
       (input, _itemIdx) => {
         input.addEventListener('click', event => {
           const { value } = event.target as HTMLInputElement;
@@ -113,6 +113,7 @@ class Filter extends Component {
         >
           <div class="select">
             <input
+              data-testid="input-${this.id}"
               type="text"
               name="input-${this.name}"
               class="filter-input"
@@ -148,7 +149,7 @@ class Filter extends Component {
                       type="radio"
                       name="radio-${this.id}"
                       value="${encode(option)}"
-                      id="radio-${this.id}"
+                      data-testid="radio-${this.id}"
                     />
                     <span class="select-item-text">${option.label}</span>
                   </label>

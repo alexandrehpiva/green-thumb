@@ -1,9 +1,10 @@
-import { waitFor } from '@testing-library/dom';
+import { waitFor, screen } from '@testing-library/dom';
 import { cleanup, findByTestIds } from '../../utils/testUtils';
 
 import Filter from '.';
 import render from '../../lib/utils/render';
 import { FilterProps } from './index';
+import state from '../../store/state';
 
 describe('EndToEnd(Filter)', () => {
   let filter: Filter;
@@ -25,13 +26,14 @@ describe('EndToEnd(Filter)', () => {
     filter = new Filter(mockData);
     render(filter, document.body);
     filter.effect();
+    state.main.filters = [];
   });
 
   it('should render the Filter component', async () => {
     expect(filter.node()).toBeInTheDocument();
   });
 
-  it('should open the list on click', async () => {
+  it('should open the list on click and close when click outside', async () => {
     const [selectContainer, selectList, btnOpenList] = await findByTestIds(
       `select-wrapper-${filter.id}`,
       `select-list-${filter.id}`,
@@ -46,13 +48,38 @@ describe('EndToEnd(Filter)', () => {
       expect(selectContainer).toHaveClass('opened');
       expect(selectList).not.toHaveClass('hidden');
     });
+
+    const outside = document.body;
+
+    outside.click();
+
+    await waitFor(() => {
+      expect(selectContainer).not.toHaveClass('opened');
+      expect(selectList).toHaveClass('hidden');
+    });
   });
 
   it('should addFilter to store on click a list item', async () => {
-    // TODO
-  });
+    const [mockFirstOption] = mockData.options;
 
-  it('should close the list on click outside', async () => {
-    // TODO
+    // Finding elements
+    const [firstItem] = (await screen.findAllByTestId(
+      `radio-${filter.id}`
+    )) as HTMLInputElement[];
+    const [inputSelect] = await findByTestIds<[HTMLInputElement]>(
+      `input-${filter.id}`
+    );
+
+    // Click item list
+    firstItem.click();
+    await waitFor(() => {
+      // inputSelect value must change
+      expect(inputSelect.value).toBe(mockFirstOption.label);
+
+      // The filter must be added to state
+      expect(state.main.filters).toEqual({
+        [filter.name]: mockFirstOption.value,
+      });
+    });
   });
 });
