@@ -34,23 +34,35 @@ describe('EndToEnd(Filter)', () => {
   });
 
   it('should open the list on click and close when click outside', async () => {
-    const [selectContainer, selectList, btnOpenList] = await findByTestIds(
-      `select-wrapper-${filter.id}`,
-      `select-list-${filter.id}`,
-      `select-btn-${filter.id}`
-    );
+    const [selectContainer, selectList, btnOpenList, inputSelect] =
+      await findByTestIds(
+        `select-wrapper-${filter.id}`,
+        `select-list-${filter.id}`,
+        `select-btn-${filter.id}`,
+        `input-${filter.id}`
+      );
+    const outside = document.body;
 
+    // Verify select-list initial condition
     expect(selectList).toHaveClass('hidden');
 
+    // Should open the list
     btnOpenList.click();
+    
+    await waitFor(() => {
+      expect(selectContainer).toHaveClass('opened');
+      expect(selectList).not.toHaveClass('hidden');
+    });
+
+    // Click inside the list (e.g. inputSelect) should not close it
+    inputSelect.click();
 
     await waitFor(() => {
       expect(selectContainer).toHaveClass('opened');
       expect(selectList).not.toHaveClass('hidden');
     });
 
-    const outside = document.body;
-
+    // Click outside the list
     outside.click();
 
     await waitFor(() => {
@@ -62,7 +74,6 @@ describe('EndToEnd(Filter)', () => {
   it('should addFilter to store on click a list item', async () => {
     const [mockFirstOption] = mockData.options;
 
-    // Finding elements
     const [firstItem] = (await screen.findAllByTestId(
       `radio-${filter.id}`
     )) as HTMLInputElement[];
@@ -72,6 +83,7 @@ describe('EndToEnd(Filter)', () => {
 
     // Click item list
     firstItem.click();
+
     await waitFor(() => {
       // inputSelect value must change
       expect(inputSelect.value).toBe(mockFirstOption.label);
