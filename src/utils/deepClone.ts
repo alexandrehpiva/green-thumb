@@ -17,9 +17,7 @@ function deepClone<T extends Object | Date | RegExp>(obj: T): T {
   }
 
   for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      temp[key] = deepClone(obj[key]);
-    }
+    temp[key] = deepClone(obj[key]);
   }
 
   return temp;

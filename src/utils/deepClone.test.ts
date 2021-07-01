@@ -55,4 +55,28 @@ describe('Unit(deepClone)', () => {
     expect(copy).toEqual(regex);
     expect(copy).not.toBe(regex);
   });
+
+  it('should clone a class object instance', () => {
+    class Test {
+      value: number;
+      constructor(value: number) {
+        this.value = value;
+      }
+
+      sum(value: number) {
+        this.value += value;
+      }
+    }
+
+    const test = new Test(2);
+
+    const copy = deepClone(test);
+
+    // copy instance should work normally
+    copy.sum(2);
+    expect(copy.value).toBe(4);
+
+    // test instance should not be changed;
+    expect(test.value).toBe(2);
+  });
 });
