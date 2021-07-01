@@ -1,8 +1,18 @@
 import { queryByAttribute, screen } from '@testing-library/dom';
+import store from '../store';
 
 const queryById = queryByAttribute.bind(null, 'id');
 
-const cleanup = () => (document.body.innerHTML = '');
+const cleanup = () => {
+  // Clean document.body
+  while (document.body.firstChild) {
+    document.body.removeChild(document.body.firstChild);
+  }
+
+  // Clean state and events
+  store.dangerouslyResetState();
+  store.resetEvents();
+};
 
 const findByTestIds = <T extends HTMLElement[] = HTMLElement[]>(
   ...testIds: string[]
