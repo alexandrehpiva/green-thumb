@@ -9,7 +9,7 @@ class Store<
   private mutations: M;
   readonly initialState: S;
   private state: S;
-  events: EventListener;
+  readonly events: EventListener;
   status: string;
 
   constructor({ state, mutations }: { state: S; mutations: M }) {
@@ -36,6 +36,10 @@ class Store<
 
   dangerousResetState() {
     Object.assign(this.state, deepClone(this.initialState));
+  }
+
+  resetEvents() {
+    Object.assign(this.events, new EventListener());
   }
 
   // TODO: create/test a dispatchAsync
