@@ -8,7 +8,12 @@ function deepClone<T extends Object | Date | RegExp>(obj: T): T {
   } else if (obj instanceof RegExp) {
     temp = new RegExp(obj) as T;
   } else {
-    temp = obj.constructor();
+    try {
+      temp = obj.constructor();
+    } catch (_) {
+      // Clone the object
+      temp = Object.assign(Object.create(Object.getPrototypeOf(obj)), obj);
+    }
   }
 
   for (const key in obj) {
