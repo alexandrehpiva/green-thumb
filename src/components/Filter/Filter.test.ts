@@ -5,6 +5,7 @@ import Filter from '.';
 import render from '../../lib/utils/render';
 import { FilterProps } from './index';
 import state from '../../store/state';
+import store from '../../store';
 
 describe('EndToEnd(Filter)', () => {
   let filter: Filter;
@@ -26,7 +27,7 @@ describe('EndToEnd(Filter)', () => {
     filter = new Filter(mockData);
     render(filter, document.body);
     filter.effect();
-    state.main.filters = [];
+    store.dangerousResetState();
   });
 
   it('should render the Filter component', async () => {
@@ -48,7 +49,7 @@ describe('EndToEnd(Filter)', () => {
 
     // Should open the list
     btnOpenList.click();
-    
+
     await waitFor(() => {
       expect(selectContainer).toHaveClass('opened');
       expect(selectList).not.toHaveClass('hidden');
