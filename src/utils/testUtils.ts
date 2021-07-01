@@ -12,5 +12,12 @@ const findByTestIds = <T extends HTMLElement[] = HTMLElement[]>(
   ) as Promise<T>;
 };
 
+const defineProperty = <T>(element: T, property: keyof T, value: any) => {
+  Object.defineProperty(element, property, {
+    configurable: true,
+    value: value,
+  });
+};
+
 // Additional methods
-export { queryById, cleanup, findByTestIds };
+export { queryById, cleanup, findByTestIds, defineProperty };
