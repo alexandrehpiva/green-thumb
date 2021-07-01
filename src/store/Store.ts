@@ -1,4 +1,5 @@
 import EventListener from '../lib/EventListener';
+import deepClone from '../utils/deepClone';
 import { CombinedMutations, CombinedStates } from './types';
 
 class Store<
@@ -6,6 +7,7 @@ class Store<
   M extends CombinedMutations<keyof S> = CombinedMutations<keyof S>
 > {
   private mutations: M;
+  readonly initialState: S;
   private state: S;
   events: EventListener;
   status: string;
@@ -14,6 +16,7 @@ class Store<
     this.mutations = mutations;
     this.events = new EventListener(); // Subscriptions
     this.status = 'idle';
+    this.initialState = deepClone(state);
 
     // The Proxy set will intercept the state change and publish the event to listener
     this.state = new Proxy(state, {
@@ -31,6 +34,10 @@ class Store<
     });
   }
 
+  dangerousResetState() {
+    Object.assign(this.state, deepClone(this.initialState));
+  }
+
   // TODO: create/test a dispatchAsync
 
   dispatch<T = any>(
@@ -40,7 +47,7 @@ class Store<
   ) {
     this.status = 'mutation';
 
-    const newState = this.mutations[stateName][mutationName](
+    const newValue = this.mutations[stateName][mutationName](
       this.state[stateName],
       payload
     );
@@ -48,7 +55,7 @@ class Store<
     // Change the state and let the Proxy do its job
     Object.assign(this.state, {
       ...this.state,
-      [stateName]: newState,
+      [stateName]: newValue,
     });
   }
 }

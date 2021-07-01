@@ -44,4 +44,20 @@ describe('Unit(Store)', () => {
 
     expect(state.mock).toEqual({ count: 2 });
   });
+
+  it('should reset the state to initial values', () => {
+    const state = { mock: { count: 0 } };
+    const store = new Store({
+      state,
+      mutations: mockMutations,
+    });
+
+    store.dispatch('mock', 'addToCount', 2);
+
+    expect(store.initialState).toEqual({ mock: { count: 0 } });
+
+    store.dangerousResetState();
+
+    expect(state.mock).toEqual({ count: 0 });
+  });
 });
