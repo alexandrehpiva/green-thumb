@@ -1,3 +1,8 @@
+/**
+ * Deep clone objects
+ * @param {T} obj - Object to clone
+ * @returns T - Clone of obj
+ */
 function deepClone<T extends Object | Date | RegExp>(obj: T): T {
   if (obj === null || typeof obj !== 'object') return obj;
 
