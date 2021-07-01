@@ -34,7 +34,7 @@ class Store<
     });
   }
 
-  dangerousResetState() {
+  dangerouslyResetState() {
     Object.assign(this.state, deepClone(this.initialState));
   }
 

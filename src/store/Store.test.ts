@@ -56,7 +56,7 @@ describe('Unit(Store)', () => {
 
     expect(store.initialState).toEqual({ mock: { count: 0 } });
 
-    store.dangerousResetState();
+    store.dangerouslyResetState();
 
     expect(state.mock).toEqual({ count: 0 });
   });

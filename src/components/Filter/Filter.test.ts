@@ -27,7 +27,7 @@ describe('EndToEnd(Filter)', () => {
     filter = new Filter(mockData);
     render(filter, document.body);
     filter.effect();
-    store.dangerousResetState();
+    store.dangerouslyResetState();
   });
 
   it('should render the Filter component', async () => {
