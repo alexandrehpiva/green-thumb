@@ -50,7 +50,7 @@ class Main extends Component {
       () => mainContent && scrollTo(mainContent.offsetTop)
     );
 
-    document.addEventListener('scroll', function (e) {
+    window.addEventListener('scroll', function (e) {
       if (mainContent && window.scrollY > mainContent.offsetTop) {
         return toggle('#back-to-top', true);
       }
@@ -70,7 +70,7 @@ class Main extends Component {
 
       const data = await plantsService.get(sunlight, water, pets);
 
-      if (isApiError(data)) {
+      if (isApiError(data) || !data.length) {
         toggle('#loading', false);
         toggle('#no-results', true);
         toggle('#grid-section', false);
@@ -102,7 +102,7 @@ class Main extends Component {
                 <img src="${svgLogoWhite}" alt="green thumb." />
               </picture>
               <h1 class="text">Find your next green friend</h1>
-              <picture role="button" id="scroll-down-btn">
+              <picture data-testid="scroll-down-btn" role="button" id="scroll-down-btn">
                 <img src="${svgArrowDown}" alt="Greenthumb" />
               </picture>
             </div>
@@ -153,7 +153,12 @@ class Main extends Component {
               </header>
               <div id="grid" class="grid"></div>
               <footer id="grid-footer" class="grid-footer">
-                <div role="button" id="back-to-top" class="hidden">
+                <div
+                  data-testid="back-to-top"
+                  role="button"
+                  id="back-to-top"
+                  class="hidden"
+                >
                   <img src="${svgArrowUp}" alt="Back to the top">
                   <span>back to the top</span>
                 </div>
