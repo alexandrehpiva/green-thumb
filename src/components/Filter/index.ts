@@ -35,17 +35,14 @@ class Filter extends Component {
   }
 
   effect() {
-    const query = document.querySelector.bind(document);
     const queryAll = document.querySelectorAll.bind(document);
     const getById = document.getElementById.bind(document);
 
     // Elements
     const selectContainer = getById(`select-wrapper-${this.id}`);
     const selectList = getById(`select-list-${this.id}`); // Flyout list
-    const inputSelect: HTMLInputElement | null = query(`#input-${this.id}`);
-    const btnOpenList: HTMLInputElement | null = query(
-      `#select-btn-${this.id}`
-    );
+    const inputSelect = getById(`input-${this.id}`) as HTMLInputElement;
+    const btnOpenList = getById(`select-btn-${this.id}`) as HTMLInputElement;
 
     const toggleFilterList = () => {
       selectContainer?.classList.toggle('opened');
@@ -53,7 +50,7 @@ class Filter extends Component {
     };
 
     // Open list button
-    btnOpenList?.addEventListener('change', toggleFilterList);
+    btnOpenList.addEventListener('change', toggleFilterList);
 
     // List click functions
     queryAll(`.select-item > input[name="radio-${this.id}"]`).forEach(
