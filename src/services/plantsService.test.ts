@@ -18,7 +18,7 @@ describe('Unit(plantsService)', () => {
 
     // Mocking global fetch
     global.fetch = jest.fn(
-      (input: RequestInfo, init?: RequestInit): Promise<Response> => {
+      (_input: RequestInfo, _init?: RequestInit): Promise<Response> => {
         return Promise.resolve({
           json: () => Promise.resolve(mockData),
         } as Response);
@@ -38,7 +38,7 @@ describe('Unit(plantsService)', () => {
 
     // Mocking global fetch
     global.fetch = jest.fn(
-      (input: RequestInfo, init?: RequestInit): Promise<Response> => {
+      (_input: RequestInfo, _init?: RequestInit): Promise<Response> => {
         return Promise.reject(mockError);
       }
     );
