@@ -132,10 +132,14 @@ class Main extends Component {
           class="content-section"
         >
           <div class="container">
-            <section id="loading" class="hidden">
+            <section data-testid="loading" id="loading" class="hidden">
               ${render(new Spinner())}
             </section>
-            <section id="no-results" class="no-results">
+            <section
+              data-testid="no-results"
+              id="no-results"
+              class="no-results"
+            >
               <header class="message">
                 <h2 class="title">No results yet...</h2>
                 <p class="text">Use the filters above to find the plant that best fits your environment :)</p>
@@ -144,7 +148,11 @@ class Main extends Component {
                 <img src="${pngNoResults}" alt="No results">
               </picture>
             </section>
-            <section id="grid-section" class="grid-section hidden">
+            <section
+              data-testid="grid-section"
+              id="grid-section"
+              class="grid-section hidden"
+            >
               <header id="grid-header" class="grid-header">
                 <picture>
                   <img src="${pngPick}" alt="Our picks for you">

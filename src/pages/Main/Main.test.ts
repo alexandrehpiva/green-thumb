@@ -8,7 +8,7 @@ import {
 import Main from '.';
 import render from '../../lib/utils/render';
 import store from '../../store';
-import { Plant } from '../../types/apiTypes';
+import { ApiError, Plant } from '../../types/apiTypes';
 import { cleanup, defineProperty, findByTestIds } from '../../utils/testUtils';
 
 import { sunlightFilter, waterFilter, petsFilter } from './filtersData';
@@ -128,7 +128,7 @@ describe('EndToEnd(Main)', () => {
     });
   });
 
-  it('should call fetch service data when all three filters are filled', async () => {
+  it('should call fetch service data when all three filters are filled', () => {
     const mockData: Plant[] = [
       {
         id: 1,
@@ -144,7 +144,7 @@ describe('EndToEnd(Main)', () => {
 
     // Mocking global fetch
     global.fetch = jest.fn(
-      (input: RequestInfo, init?: RequestInit): Promise<Response> => {
+      (_input: RequestInfo, _init?: RequestInit): Promise<Response> => {
         return Promise.resolve({
           json: () => Promise.resolve(mockData),
         } as Response);
@@ -163,10 +163,40 @@ describe('EndToEnd(Main)', () => {
   });
 
   it('should show no-results container if receive an api error', async () => {
-    // TODO
+    const mockError: ApiError = {
+      status: 500,
+      error: 'Server error',
+    };
+
+    // Mocking global fetch
+    global.fetch = jest.fn(
+      (_input: RequestInfo, _init?: RequestInit): Promise<Response> => {
+        return Promise.reject(mockError);
+      }
+    );
+
+    // Dispatching data for all three filters
+    [sunlightFilter, waterFilter, petsFilter].forEach(filter => {
+      store.dispatch('main', 'addFilter', {
+        name: filter.name,
+        value: filter.options[0].value,
+      });
+    });
+
+    const [loading, noResults, gridSection] = await findByTestIds(
+      'loading',
+      'no-results',
+      'grid-section'
+    );
+
+    await waitFor(() => {
+      expect(loading).not.toHaveClass('hidden');
+      expect(noResults).toHaveClass('hidden');
+      expect(gridSection).not.toHaveClass('hidden');
+    });
   });
 
-  it('should render all received data items into grid if not get api error', async () => {
+  it('should not call fetch service data if state change is not in main state', async () => {
     // TODO
   });
 });
