@@ -190,9 +190,9 @@ describe('EndToEnd(Main)', () => {
     );
 
     await waitFor(() => {
-      expect(loading).not.toHaveClass('hidden');
-      expect(noResults).toHaveClass('hidden');
-      expect(gridSection).not.toHaveClass('hidden');
+      expect(loading).toHaveClass('hidden');
+      expect(noResults).not.toHaveClass('hidden');
+      expect(gridSection).toHaveClass('hidden');
     });
   });
 
