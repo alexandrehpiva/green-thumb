@@ -60,4 +60,20 @@ describe('Unit(Store)', () => {
 
     expect(state.mock).toEqual({ count: 0 });
   });
+
+  it('should not dispatch a change event when dispatching to a non existent state', () => {
+    const state = { mock: { count: 0 } };
+    const store = new Store({
+      state,
+      mutations: mockMutations,
+    });
+
+    const mockFn = jest.fn();
+
+    store.events.subscribe('change', mockFn);
+
+    store.dispatch('notMock' as 'mock', 'addToCount', 2);
+
+    expect(mockFn).not.toBeCalled();
+  });
 });

@@ -44,11 +44,15 @@ class Store<
 
   // TODO: create/test a dispatchAsync
 
-  dispatch<T = any>(
-    stateName: keyof S,
-    mutationName: keyof M[keyof S],
+  dispatch<T = any, K extends keyof S = keyof S>(
+    stateName: K,
+    mutationName: keyof M[K],
     payload?: T
   ) {
+    if (!this.mutations[stateName]?.[mutationName]) {
+      return;
+    }
+
     this.status = 'mutation';
 
     const newValue = this.mutations[stateName][mutationName](
@@ -57,10 +61,7 @@ class Store<
     );
 
     // Change the state and let the Proxy do its job
-    Object.assign(this.state, {
-      ...this.state,
-      [stateName]: newValue,
-    });
+    this.state[stateName] = newValue;
   }
 }
 
