@@ -197,6 +197,26 @@ describe('EndToEnd(Main)', () => {
   });
 
   it('should not call fetch service data if state change is not in main state', async () => {
-    // TODO
+    // Mocking global fetch
+    global.fetch = jest.fn(
+      (_input: RequestInfo, _init?: RequestInit): Promise<Response> => {
+        return Promise.resolve({
+          json: () => Promise.resolve([]),
+        } as Response);
+      }
+    );
+
+    // Dispatching data for all three filters
+    [sunlightFilter, waterFilter, petsFilter].forEach(filter => {
+      store.dispatch('main', 'addFilter', {
+        name: filter.name,
+        value: filter.options[0].value,
+      });
+    });
+
+    store.dispatch('test', 'toggle');
+
+    // Expect the global.fetch to be called only in 'main' dispatch, but not in 'test'
+    expect(global.fetch).toBeCalledTimes(1);
   });
 });

@@ -38,14 +38,14 @@ class Main extends Component {
 
     // Scroll down button
     const scrollDownBtn = document.getElementById('scroll-down-btn');
-    scrollDownBtn?.addEventListener(
+    scrollDownBtn!.addEventListener(
       'click',
       () => mainContent && scrollTo(mainContent.offsetTop)
     );
 
     // Back to the top button
     const backToTopBtn = document.getElementById('back-to-top');
-    backToTopBtn?.addEventListener(
+    backToTopBtn!.addEventListener(
       'click',
       () => mainContent && scrollTo(mainContent.offsetTop)
     );
@@ -63,7 +63,7 @@ class Main extends Component {
       return;
     }
 
-    const { water, pets, sunlight } = state.main.filters ?? {};
+    const { water, pets, sunlight } = state.main.filters;
     if (water && pets && sunlight) {
       // Ready for service call.
       toggle('#loading', true);
@@ -80,11 +80,7 @@ class Main extends Component {
 
       // Render all data items into grid
       const grid = document.querySelector('#grid');
-      if (grid) {
-        grid.innerHTML = data
-          .map(plant => render(new GridItem(plant)))
-          .join('');
-      }
+      grid!.innerHTML = data.map(plant => render(new GridItem(plant))).join('');
 
       toggle('#loading', false);
       toggle('#no-results', false);
