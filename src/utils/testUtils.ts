@@ -4,6 +4,9 @@ import store from '../store';
 const queryById = queryByAttribute.bind(null, 'id');
 
 const cleanup = () => {
+  // Clear all Mock functions
+  jest.clearAllMocks();
+
   // Clean document.body
   while (document.body.firstChild) {
     document.body.removeChild(document.body.firstChild);
