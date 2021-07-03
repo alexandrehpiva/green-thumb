@@ -1,6 +1,8 @@
+import testState from './testState';
 import mainState from './mainState';
 
 const state = {
+  test: testState,
   main: mainState,
 };
 
