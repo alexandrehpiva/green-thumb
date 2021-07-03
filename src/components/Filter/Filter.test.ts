@@ -71,6 +71,49 @@ describe('EndToEnd(Filter)', () => {
     });
   });
 
+  it('should ignore toggleFilterList if selectContainer is not opened or the click were inside selectContainer', async () => {
+    const [selectContainer, selectList] = await findByTestIds(
+      `select-wrapper-${filter.id}`,
+      `select-list-${filter.id}`
+    );
+    const [btnOpenList, inputSelect] = await findByTestIds<HTMLInputElement[]>(
+      `select-btn-${filter.id}`,
+      `input-${filter.id}`
+    );
+
+    // Verify select-list initial condition
+    expect(btnOpenList.checked).toBe(false);
+    expect(selectContainer).not.toHaveClass('opened');
+    expect(selectList).toHaveClass('hidden');
+
+    // Verify an outside click with list closed
+    const outside = document.body;
+    outside.click();
+
+    await waitFor(() => {
+      expect(btnOpenList.checked).toBe(false);
+      expect(selectContainer).not.toHaveClass('opened');
+      expect(selectList).toHaveClass('hidden');
+    });
+
+    // Verify an inside list click
+    btnOpenList.click();
+
+    // Verify select-list initial condition
+    expect(btnOpenList.checked).toBe(true);
+    expect(selectContainer).toHaveClass('opened');
+    expect(selectList).not.toHaveClass('hidden');
+
+    const inside = inputSelect;
+    inside.click();
+
+    await waitFor(() => {
+      expect(btnOpenList.checked).toBe(true);
+      expect(selectContainer).toHaveClass('opened');
+      expect(selectList).not.toHaveClass('hidden');
+    });
+  });
+
   it('should addFilter to store on click a list item', async () => {
     const [mockFirstOption] = mockData.options;
 

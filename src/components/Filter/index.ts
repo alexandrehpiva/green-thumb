@@ -39,14 +39,14 @@ class Filter extends Component {
     const getById = document.getElementById.bind(document);
 
     // Elements
-    const selectContainer = getById(`select-wrapper-${this.id}`);
-    const selectList = getById(`select-list-${this.id}`); // Flyout list
+    const selectContainer = getById(`select-wrapper-${this.id}`) as HTMLElement;
+    const selectList = getById(`select-list-${this.id}`) as HTMLElement; // Flyout list
     const inputSelect = getById(`input-${this.id}`) as HTMLInputElement;
     const btnOpenList = getById(`select-btn-${this.id}`) as HTMLInputElement;
 
     const toggleFilterList = () => {
-      selectContainer?.classList.toggle('opened');
-      selectList?.classList.toggle('hidden');
+      selectContainer.classList.toggle('opened');
+      selectList.classList.toggle('hidden');
     };
 
     // Open list button
@@ -59,14 +59,12 @@ class Filter extends Component {
           const { value } = event.target as HTMLInputElement;
           const option = decode<FilterOption>(value);
 
-          if (inputSelect && option) {
-            inputSelect.value = option.label;
+          inputSelect.value = option.label;
 
-            store.dispatch('main', 'addFilter', {
-              name: this.name,
-              value: option.value,
-            });
-          }
+          store.dispatch('main', 'addFilter', {
+            name: this.name,
+            value: option.value,
+          });
 
           toggleFilterList();
         });
@@ -76,22 +74,20 @@ class Filter extends Component {
     // Close FilterList if clicked outside the element
     document.addEventListener('click', evt => {
       // Ignore if the list is not opened
-      if (!selectContainer?.classList.contains('opened')) {
+      if (!selectContainer.classList.contains('opened')) {
         return;
       }
 
       let targetElement = evt.target as HTMLElement; // clicked element
 
-      if (selectContainer?.contains(targetElement)) {
+      if (selectContainer.contains(targetElement)) {
         // Clicked inside the element
         return;
       }
 
       // Clicked outside the element
       toggleFilterList();
-      if (btnOpenList) {
-        btnOpenList.checked = false;
-      }
+      btnOpenList.checked = false;
     });
   }
 
