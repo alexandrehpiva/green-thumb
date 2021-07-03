@@ -48,7 +48,6 @@ describe('EndToEnd(Filter)', () => {
 
     // Should open the list
     btnOpenList.click();
-    
 
     await waitFor(() => {
       expect(selectContainer).toHaveClass('opened');
