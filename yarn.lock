@@ -2281,6 +2281,11 @@ clone@^2.1.1:
   resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
   integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
 
+clone@~0.1.11:
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-0.1.19.tgz#613fb68639b26a494ac53253e15b1a6bd88ada85"
+  integrity sha1-YT+2hjmyaklKxTJT4Vsaa9iK2oU=
+
 clones@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/clones/-/clones-1.2.0.tgz#b34c872045446a9f264ccceb7731bca05c529b71"
@@ -2370,7 +2375,7 @@ command-exists@^1.2.6:
   resolved "https://registry.yarnpkg.com/command-exists/-/command-exists-1.2.9.tgz#c50725af3808c8ab0260fd60b01fbfa25b954f69"
   integrity sha512-LTQ/SGc+s0Xc0Fu5WaKnR0YiygZkm9eKFvyS+fRsU7/ZWFF8ykFM6Pc9aCVf1+xasOOZpO3BAVgVrKvsqKHV7w==
 
-commander@^2.11.0, commander@^2.19.0, commander@^2.20.0:
+commander@^2.11.0, commander@^2.19.0, commander@^2.20.0, commander@^2.8.1:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
@@ -4303,6 +4308,14 @@ jest-config@^27.0.4:
     jest-validate "^27.0.2"
     micromatch "^4.0.4"
     pretty-format "^27.0.2"
+
+jest-coverage-shield@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/jest-coverage-shield/-/jest-coverage-shield-1.1.2.tgz#5a494db576b7ba01ffa5d1c4df8ff041ae42e1a5"
+  integrity sha512-inwcrWuRJMI29PeHQoSjhi+qps4t7//WtidqHHrmQbLO9ar96XHSp0UD7qZ5mN+ibJcqYo1LRGDw+7libabRpw==
+  dependencies:
+    commander "^2.8.1"
+    xml-splitter "~1.2.1"
 
 jest-diff@^26.0.0:
   version "26.6.2"
@@ -6525,6 +6538,11 @@ sass@^1.35.1:
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
+sax@~0.5.5:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-0.5.8.tgz#d472db228eb331c2506b0e8c15524adb939d12c1"
+  integrity sha1-1HLbIo6zMcJQaw6MFVJK25OdEsE=
+
 sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -7618,6 +7636,14 @@ xml-name-validator@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
   integrity sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==
+
+xml-splitter@~1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/xml-splitter/-/xml-splitter-1.2.1.tgz#b3fd28c88063e510ab6a35ed0943292409c4c812"
+  integrity sha1-s/0oyIBj5RCrajXtCUMpJAnEyBI=
+  dependencies:
+    clone "~0.1.11"
+    sax "~0.5.5"
 
 xmlchars@^2.1.1, xmlchars@^2.2.0:
   version "2.2.0"
